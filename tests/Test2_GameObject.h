@@ -2,8 +2,7 @@
 
 #include "Test.h"
 
-#include "../Mesh.h"
-#include "../Transform.h"
+#include "../GameObject.h"
 
 #include "../easyGL/Renderer.h"
 #include "../easyGL/VertexArray.h"
@@ -14,11 +13,10 @@
 
 namespace tests
 {
-    class Test2_MeshTransform : public Test
+    class Test2_GameObject : public Test
     {
         private:
-            OpenglToolKit::Mesh m_Mesh;
-            OpenglToolKit::Transform m_MeshTransform;
+            OpenglToolKit::GameObject m_GameObject;
             
             float m_Trans[3];
             float m_Rot[3];
@@ -30,8 +28,8 @@ namespace tests
             std::unique_ptr<easyGL::VertexBuffer> m_VB;
 
         public:
-            Test2_MeshTransform();
-            ~Test2_MeshTransform();
+            Test2_GameObject();
+            ~Test2_GameObject();
 
             void OnUpdate(float deltaTime) override;
             void OnRender() override;
