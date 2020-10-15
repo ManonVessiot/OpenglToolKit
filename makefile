@@ -17,15 +17,33 @@ TESTS = ./tests/Test.o ./tests/TestTemplate.o
 EASY_GL = ./easyGL/Renderer.o ./easyGL/VertexBuffer.o ./easyGL/IndexBuffer.o ./easyGL/VertexArray.o \
 	./easyGL/VertexBufferLayout.o ./easyGL/Shader.o ./easyGL/Texture.o
 
-LOCAL = main.o
+LOCAL = main.o WorldManager.o ImGuiManager.o #LightsManager.o Light.o BatchManager.o Batch.o
 
 all: $(LOCAL)
 
-main.o: main.cpp
+Batch.o: Batch.cpp
+	$(CXX) -c Batch.cpp $(INC)
+
+BatchManager.o: BatchManager.cpp
+	$(CXX) -c BatchManager.cpp $(INC)
+
+Light.o: Light.cpp
+	$(CXX) -c Light.cpp $(INC)
+
+LightsManager.o: LightsManager.cpp
+	$(CXX) -c LightsManager.cpp $(INC)
+
+ImGuiManager.o: ImGuiManager.cpp
+	$(CXX) -c ImGuiManager.cpp $(INC)
+
+WorldManager.o: WorldManager.cpp
+	$(CXX) -c WorldManager.cpp $(INC)
+
+main.o: main.cpp WorldManager.h ImGuiManager.h
 	$(CXX) -c main.cpp $(INC)
 
 exc: $(LOCAL)
 	$(CXX) -o exc $(LOCAL) $(EASY_GL) $(TESTS) $(VENDOR_O) $(LIBS)
 
 clean :
-	rm -f *.o exc
+	rm -f *.o exc imgui.ini

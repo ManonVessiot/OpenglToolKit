@@ -1,61 +1,21 @@
-
-#include <GL/glew.h> // needs to be included first
-#include <GLFW/glfw3.h>
-
-#include <iostream>
-
-#include "vendor/imgui/imgui.h"
-#include "vendor/imgui/imgui_impl_glfw.h"
-#include "vendor/imgui/imgui_impl_opengl3.h"
-
-#include "easyGL/Renderer.h"
+#include "WorldManager.h"
+#include "ImGuiManager.h"
 
 #include "tests/Test.h"
 #include "tests/TestTemplate.h"
 
 int main(int argc, char const *argv[])
 {
-    GLFWwindow * window;
+    OpenglToolKit::WorldManager* worldManager = OpenglToolKit::WorldManager::Instance();
+    OpenglToolKit::ImGuiManager* imGuiManager = OpenglToolKit::ImGuiManager::Instance();
 
-    // Initialize the library
-    if (!glfwInit()){
-        return -1;
-    }
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    // Create a windowed mode window and its OpenGL context
     int height = 540;
     int width = 960;
-    // glfwGetWindowSize(&width, &height);
-    window = glfwCreateWindow(width, height, "OpenglToolKit", NULL, NULL);
-    if (!window){
-        glfwTerminate();
+    if (!worldManager->Init(width, height)){
         return -1;
     }
-    glfwGetWindowSize(window, &width, &height);
-
-    // Make the window's context current
-    glfwMakeContextCurrent(window);
-
-    glfwSwapInterval(3);
-
-    // Init glew after making context current 
-    if (glewInit() != GLEW_OK){
-        std::cout << "Error!" << std::endl;
-    }
-    std::cout << glGetString(GL_VERSION) << std::endl;
+    imGuiManager->Init_imgui();
     {
-        easyGL::Renderer::Blend();
-
-        // ImGui : INIT
-        ImGui::CreateContext();
-        ImGui::StyleColorsDark();
-        ImGui_ImplGlfw_InitForOpenGL(window, true);
-        ImGui_ImplOpenGL3_Init("#version 130");
-
         tests::Test* currentTest = nullptr;
         tests::TestMenu* testMenu = new tests::TestMenu(currentTest);
         currentTest = testMenu;
@@ -63,48 +23,35 @@ int main(int argc, char const *argv[])
         testMenu->RegisterTest<tests::TestTemplate>("TestTemplate");
 
         // Loop until the user closes the window
-        while (!glfwWindowShouldClose(window))
+        while (!worldManager->CheckCloseFlag())
         {
-            easyGL::Renderer::Clear();
+            worldManager->InitFrame();
+            imGuiManager->InitFrame_imgui();
 
-            // ImGui : INIT NEW FRAME
-            ImGui_ImplOpenGL3_NewFrame();
-            ImGui_ImplGlfw_NewFrame();
-            ImGui::NewFrame();
             if (currentTest)
             {
                 currentTest->OnUpdate(0.0f);
                 currentTest->OnRender();
-                ImGui::Begin("Test");
-                if (currentTest != testMenu && ImGui::Button("<-"))
+                imGuiManager->StartWindow("Test");
+                if (currentTest != testMenu && imGuiManager->CreateButton("<-"))
                 {
                     delete currentTest;
                     currentTest = testMenu;
                 }
                 currentTest->OnImGuiRender();
-                ImGui::End();
+                imGuiManager->EndWindow();
             }
 
-            // ImGui : RENDER
-            ImGui::Render();
-            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+            imGuiManager->Render_imgui();
 
-            // Swap front and back buffers
-            glfwSwapBuffers(window);
-
-            // Poll for and process events
-            glfwPollEvents();
+            worldManager->EndFrame();
         }
         delete currentTest;
         if (currentTest != testMenu){
             delete testMenu;
         }
     }
-    // ImGui : DESTROY
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    // ImGui::DestroyContext(); // create a file
-
-    glfwTerminate();
+    imGuiManager->Destroy_imgui();
+    worldManager->Terminate();
     return 0;
 }
