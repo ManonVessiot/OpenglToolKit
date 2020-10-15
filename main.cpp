@@ -3,14 +3,15 @@
 
 #include "tests/Test.h"
 #include "tests/TestTemplate.h"
+#include "tests/Test1_Mesh.h"
 
 int main(int argc, char const *argv[])
 {
     OpenglToolKit::WorldManager* worldManager = OpenglToolKit::WorldManager::Instance();
     OpenglToolKit::ImGuiManager* imGuiManager = OpenglToolKit::ImGuiManager::Instance();
 
-    int height = 540;
-    int width = 960;
+    int height = 620;
+    int width = 620;
     if (!worldManager->Init(width, height)){
         return -1;
     }
@@ -21,6 +22,7 @@ int main(int argc, char const *argv[])
         currentTest = testMenu;
 
         testMenu->RegisterTest<tests::TestTemplate>("TestTemplate");
+        testMenu->RegisterTest<tests::Test1_Mesh>("Test1_Mesh");
 
         // Loop until the user closes the window
         while (!worldManager->CheckCloseFlag())
