@@ -6,22 +6,36 @@
 
 namespace OpenglToolKit
 {
+    struct VertexData
+    {
+        glm::vec3 Position;
+        glm::vec3 Normal;
+        glm::vec4 Tangent;
+        glm::vec2 UV;
+        glm::vec4 Color;
+
+        VertexData(glm::vec3 position, glm::vec3 normal, glm::vec4 tangent, glm::vec2 uv, glm::vec4 color){
+            Position = position;
+            Normal = normal;
+            Tangent = tangent;
+            UV = uv;
+            Color = color;
+        }
+    };    
+
     class Mesh
     {
         private:
         
         public:
-            static const unsigned int m_MaxSizeOfVertex = 16 * sizeof(float);
-
-            std::vector<glm::vec3> m_VertexPosition;
-            std::vector<glm::vec3> m_VertexNormal;
-            std::vector<glm::vec4> m_VertexTangent;
-            std::vector<glm::vec2> m_VertexUV;
-            std::vector<glm::vec4> m_VertexColor;
+            std::vector<VertexData> m_Vertices;
             std::vector<unsigned int> m_Triangles;
             
             Mesh(){}
             ~Mesh(){}
+
+            void AddVertex(glm::vec3 position, glm::vec3 normal, glm::vec4 tangent, glm::vec2 uv, glm::vec4 color);
+            void AddTriangle(unsigned int a, unsigned int b, unsigned int c);
 
             void Clear();
         };    

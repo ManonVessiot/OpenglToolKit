@@ -1,11 +1,11 @@
-#include "Test2_GameObject.h"
+#include "Test3_Batching.h"
 
 #include "../easyGL/Renderer.h"
 
 #include "../vendor/imgui/imgui.h"
 
 namespace tests {
-    Test2_GameObject::Test2_GameObject()
+    Test3_Batching::Test3_Batching()
         :m_Trans{0.0f, 0.0f, 0.0f},
          m_Rot{0.0f, 0.0f, 0.0f},
          m_Scale{1.0f, 1.0f, 1.0f}
@@ -40,11 +40,11 @@ namespace tests {
         m_GameObject.m_Mesh.AddTriangle(2, 3, 0);
     }
 
-    Test2_GameObject::~Test2_GameObject()
+    Test3_Batching::~Test3_Batching()
     {
     }
 
-    void Test2_GameObject::OnUpdate(float deltaTime)
+    void Test3_Batching::OnUpdate(float deltaTime)
     {
         m_GameObject.m_Transform.m_Position = glm::vec3(m_Trans[0], m_Trans[1], m_Trans[2]);
         m_GameObject.m_Transform.m_Rotation = glm::quat(glm::vec3(glm::radians(m_Rot[0]), glm::radians(m_Rot[1]), glm::radians(m_Rot[2])));
@@ -68,7 +68,7 @@ namespace tests {
         m_IndexBuffer->WriteData(0, m_GameObject.m_Mesh.m_Triangles.size(), indices); // write indices in IndexBuffer
     }
 
-    void Test2_GameObject::OnRender()
+    void Test3_Batching::OnRender()
     {
         easyGL::Renderer::Clear();
 
@@ -76,7 +76,7 @@ namespace tests {
         easyGL::Renderer::Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
     }
 
-    void Test2_GameObject::OnImGuiRender()
+    void Test3_Batching::OnImGuiRender()
     {
         ImGui::DragFloat3("Translation", m_Trans, 0.1f);
         ImGui::DragFloat3("Rotation", m_Rot, 0.1f);
