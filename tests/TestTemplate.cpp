@@ -12,14 +12,14 @@ namespace tests {
     }
 
     void TestTemplate::OnUpdate(float deltaTime)
-    {    
+    {
     }
 
     void TestTemplate::OnRender()
-    {   
+    {
     }
 
     void TestTemplate::OnImGuiRender()
-    {        
+    {
     }
 }

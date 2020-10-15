@@ -4,6 +4,7 @@
 #include "tests/Test.h"
 #include "tests/TestTemplate.h"
 #include "tests/Test1_Mesh.h"
+#include "tests/Test2_MeshTransform.h"
 
 int main(int argc, char const *argv[])
 {
@@ -23,6 +24,7 @@ int main(int argc, char const *argv[])
 
         testMenu->RegisterTest<tests::TestTemplate>("TestTemplate");
         testMenu->RegisterTest<tests::Test1_Mesh>("Test1_Mesh");
+        testMenu->RegisterTest<tests::Test2_MeshTransform>("Test2_MeshTransform");
 
         // Loop until the user closes the window
         while (!worldManager->CheckCloseFlag())
