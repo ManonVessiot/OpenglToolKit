@@ -1,16 +1,15 @@
-#include "Test2_GameObject.h"
+#include "Test2_Material.h"
 
 #include "../easyGL/Renderer.h"
 
 #include "../vendor/imgui/imgui.h"
 
 namespace tests {
-    Test2_GameObject::Test2_GameObject()
+    Test2_Material::Test2_Material()
         :m_Trans{0.0f, 0.0f, 0.0f},
          m_Rot{0.0f, 0.0f, 0.0f},
          m_Scale{1.0f, 1.0f, 1.0f}
     {
-
         easyGL::Renderer::Blend();
         
         m_Shader = std::make_unique<easyGL::Shader>("shaders/BasicColor.shader");
@@ -40,11 +39,11 @@ namespace tests {
         m_GameObject.m_Mesh.AddTriangle(2, 3, 0);
     }
 
-    Test2_GameObject::~Test2_GameObject()
+    Test2_Material::~Test2_Material()
     {
     }
 
-    void Test2_GameObject::OnUpdate(float deltaTime)
+    void Test2_Material::OnUpdate(float deltaTime)
     {
         m_GameObject.m_Transform.m_Position = glm::vec3(m_Trans[0], m_Trans[1], m_Trans[2]);
         m_GameObject.m_Transform.m_Rotation = glm::quat(glm::vec3(glm::radians(m_Rot[0]), glm::radians(m_Rot[1]), glm::radians(m_Rot[2])));
@@ -68,7 +67,7 @@ namespace tests {
         m_IndexBuffer->WriteData(0, m_GameObject.m_Mesh.m_Triangles.size(), indices); // write indices in IndexBuffer
     }
 
-    void Test2_GameObject::OnRender()
+    void Test2_Material::OnRender()
     {
         easyGL::Renderer::Clear();
 
@@ -76,7 +75,7 @@ namespace tests {
         easyGL::Renderer::Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
     }
 
-    void Test2_GameObject::OnImGuiRender()
+    void Test2_Material::OnImGuiRender()
     {
         ImGui::DragFloat3("Translation", m_Trans, 0.1f);
         ImGui::DragFloat3("Rotation", m_Rot, 0.1f);

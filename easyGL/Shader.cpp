@@ -63,7 +63,8 @@ namespace easyGL {
             char* message = (char*)alloca(lenght * sizeof(char));
             glGetShaderInfoLog(id, lenght, &lenght, message);
             std::cout << "Fail to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader!" << std::endl;
-            std::cout << message << std::endl;
+            std::cout << "message : ";
+            std::cout << message << std::endl << std::endl;
             glDeleteShader(id);
             return 0;
         }
