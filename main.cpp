@@ -2,9 +2,8 @@
 #include "ImGuiManager.h"
 
 #include "tests/Test.h"
-#include "tests/TestTemplate.h"
-#include "tests/Test1_Mesh.h"
 #include "tests/Test2_GameObject.h"
+#include "tests/Test3_Batching.h"
 
 int main(int argc, char const *argv[])
 {
@@ -22,9 +21,8 @@ int main(int argc, char const *argv[])
         tests::TestMenu* testMenu = new tests::TestMenu(currentTest);
         currentTest = testMenu;
 
-        testMenu->RegisterTest<tests::TestTemplate>("TestTemplate");
-        testMenu->RegisterTest<tests::Test1_Mesh>("Test1_Mesh");
         testMenu->RegisterTest<tests::Test2_GameObject>("Test2_GameObject");
+        testMenu->RegisterTest<tests::Test3_Batching>("Test3_Batching");
 
         // Loop until the user closes the window
         while (!worldManager->CheckCloseFlag())

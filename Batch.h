@@ -3,6 +3,10 @@
 #include <vector>
 
 #include "easyGL/VertexArray.h"
+#include "easyGL/IndexBuffer.h"
+#include "easyGL/Shader.h"
+
+#include "Mesh.h"
 
 #include <memory>
 
@@ -13,21 +17,27 @@ namespace OpenglToolKit
         private:
             unsigned int m_MaxNumVertices;
             unsigned int m_NumUsedVertices;
+
+            unsigned int m_MaxNumTriangles;
+            unsigned int m_NumUsedTriangles;
+
             int m_Priority;
 
             std::unique_ptr<easyGL::VertexArray> m_VAO;
             std::unique_ptr<easyGL::VertexBuffer> m_VB;
+            std::unique_ptr<easyGL::Shader> m_Shader;
+            std::unique_ptr<easyGL::IndexBuffer> m_IndexBuffer;
             
         public:
-            Batch(unsigned int MaxNumVertices); // not implemented
-            ~Batch(); // not implemented
+            Batch(unsigned int MaxNumVertices, unsigned int maxNumTriangles);
+            ~Batch();
 
             bool isEmpty() const;
-            bool isEnoughRoom(unsigned int numVertices);
-            Batch* getFullest( Batch* pBatch );
+            bool isEnoughRoom(unsigned int numVertices, unsigned int numTriangles);
+            Batch* getFullest(Batch* pBatch);
             int getPriority() const;
 
-            void AddVertices(const std::vector<OpenglToolKit::VertexData> &vertices); // not implemented
-            void Render(); // not implemented
+            void AddData(std::vector<VertexData> &vertices, std::vector<unsigned int> &triangles);
+            void Render();
     };    
 } // namespace OpenglToolKit

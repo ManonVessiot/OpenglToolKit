@@ -21,7 +21,7 @@ namespace OpenglToolKit
             UV = uv;
             Color = color;
         }
-    };    
+    };
 
     class Mesh
     {
