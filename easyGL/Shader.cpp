@@ -132,6 +132,10 @@ namespace easyGL {
     {
         GLCall(glUniform1iv(GetUniformLocation(name), count, v0));
     }
+    void Shader::SetUniform1fv(const std::string& name, int count, const float* v0)
+    {
+        GLCall(glUniform1fv(GetUniformLocation(name), count, v0));
+    }
 
     int Shader::GetUniformLocation(const std::string& name)
     {

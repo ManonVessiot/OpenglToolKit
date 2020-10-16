@@ -38,6 +38,7 @@ namespace easyGL {
 
         void SetUniformMat4f(const std::string& name, const glm::mat4 matrix);
         void SetUniform1iv(const std::string& name, int count, const int* v0);
+        void SetUniform1fv(const std::string& name, int count, const float* v0);
         
 
     private:

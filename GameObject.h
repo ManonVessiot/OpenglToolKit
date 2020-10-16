@@ -2,7 +2,7 @@
 
 #include "Mesh.h"
 #include "Transform.h"
-#include "MaterialBase.h"
+#include "Material.h"
 
 namespace OpenglToolKit
 {
@@ -14,7 +14,7 @@ namespace OpenglToolKit
             Transform m_Transform;
             Mesh m_Mesh;
             bool m_Active;
-            MaterialBase m_Material;
+            Material* m_Material;
             
             GameObject();
             ~GameObject();
