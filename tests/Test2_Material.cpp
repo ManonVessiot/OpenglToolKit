@@ -83,6 +83,7 @@ namespace tests {
         easyGL::Renderer::Clear();
 
         m_GameObject.m_Material->Bind();
+        m_GameObject.m_Material->GetShader()->SetUniformMat4f("u_MVP", glm::mat4(1.0f));
         easyGL::Renderer::Draw(*m_VAO, *m_IndexBuffer, *(m_GameObject.m_Material->GetShader()));
     }
 
