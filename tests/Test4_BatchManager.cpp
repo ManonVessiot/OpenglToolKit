@@ -1,4 +1,4 @@
-#include "Test3_BatchManager.h"
+#include "Test4_BatchManager.h"
 
 #include "../easyGL/Renderer.h"
 
@@ -9,7 +9,7 @@
 
 
 namespace tests {
-    Test3_BatchManager::Test3_BatchManager()
+    Test4_BatchManager::Test4_BatchManager()
         :m_active1(true),
          m_Trans1{   0.5f,  0.0f,  0.0f},
          m_Rot1{     0.0f,  0.0f,  0.0f},
@@ -40,11 +40,11 @@ namespace tests {
         OpenglToolKit::BatchManager::Init(20, 2000, 1000);
     }
 
-    Test3_BatchManager::~Test3_BatchManager()
+    Test4_BatchManager::~Test4_BatchManager()
     {
     }
 
-    void Test3_BatchManager::OnUpdate(float deltaTime)
+    void Test4_BatchManager::OnUpdate(float deltaTime)
     {
         m_GameObject1.SetActive(m_active1);
         m_GameObject1.m_Transform.m_Position = glm::vec3(m_Trans1[0], m_Trans1[1], m_Trans1[2]);
@@ -57,13 +57,13 @@ namespace tests {
         m_GameObject2.m_Transform.m_Scale = glm::vec3(m_Scale2[0], m_Scale2[1], m_Scale2[2]);
     }
 
-    void Test3_BatchManager::OnRender()
+    void Test4_BatchManager::OnRender()
     {
         OpenglToolKit::GameObjectManager::Instance()->Render();
         OpenglToolKit::BatchManager::Instance()->EmptyAll();
     }
 
-    void Test3_BatchManager::OnImGuiRender()
+    void Test4_BatchManager::OnImGuiRender()
     {
         ImGui::DragFloat3("Translation 1", m_Trans1, 0.1f);
         ImGui::DragFloat3("Rotation 1", m_Rot1, 0.1f);

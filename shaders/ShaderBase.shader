@@ -7,11 +7,13 @@ layout(location = 2) in vec4 v_tangent;
 layout(location = 3) in vec2 v_texCoord;
 layout(location = 4) in vec4 v_color;
 
+uniform mat4 u_MVP;
+
 out vec2 v_TexCoord;
 out vec4 v_Color;
 
 void main(){
-   gl_Position = v_position;
+   gl_Position = u_MVP * v_position;
    v_TexCoord = v_texCoord;
    v_Color = v_color;
 }

@@ -12,7 +12,8 @@ VENDOR_O = ./easyGL/vendor/stb_image/stb_image.o ./vendor/imgui/imgui.o ./vendor
 	./vendor/imgui/imgui_impl_opengl3.o ./vendor/imgui/imgui_widgets.o ./vendor/imgui/imgui_draw.o \
 	./vendor/imgui/imgui_demo.o
 
-TESTS = ./tests/Test.o ./tests/Test1_GameObject.o ./tests/Test2_Material.o ./tests/Test3_BatchManager.o
+TESTS = ./tests/Test.o ./tests/Test1_GameObject.o ./tests/Test2_Material.o ./tests/Test4_BatchManager.o \
+	./tests/Test3_ZBuffer.o
 
 EASY_GL = ./easyGL/Renderer.o ./easyGL/VertexBuffer.o ./easyGL/IndexBuffer.o ./easyGL/VertexArray.o \
 	./easyGL/VertexBufferLayout.o ./easyGL/Shader.o ./easyGL/Texture.o

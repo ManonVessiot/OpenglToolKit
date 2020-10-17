@@ -24,7 +24,7 @@ namespace easyGL {
     void Renderer::Clear(float r, float g, float b, float a )
     {
         GLCall(glClearColor(r, g, b, a));
-        GLCall(glClear(GL_COLOR_BUFFER_BIT));
+        GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     }
 
     void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <unordered_map>
 
 #include "easyGL/Texture.h"
 
@@ -16,12 +17,12 @@ namespace OpenglToolKit
                 if (m_Instance){
                     delete m_Instance;
                 }
-                for(int i = 0; i < m_Textures.size(); ++i) {
-                    delete m_Textures[i];
+                for ( auto it = m_Textures.begin(); it != m_Textures.end(); ++it ) {
+                    delete it->second;
                 }
             }
 
-            std::vector<easyGL::Texture*> m_Textures;
+            std::unordered_map<std::string, easyGL::Texture*> m_Textures;
             
         public:
             static TextureManager* Instance()
