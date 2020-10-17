@@ -12,7 +12,8 @@ namespace OpenglToolKit
         private:
             static WorldManager* m_Instance;
 
-            WorldManager(){ }
+            WorldManager()
+                :m_ViewMatrix(1.0f), m_ProjectionMatrix(1.0f) { }
             ~WorldManager(){
                 if (m_Instance){
                     delete m_Instance;

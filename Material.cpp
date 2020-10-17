@@ -2,6 +2,7 @@
 
 #include "ShaderManager.h"
 #include "Property.h"
+#include "WorldManager.h"
 
 namespace OpenglToolKit
 {
@@ -76,6 +77,8 @@ namespace OpenglToolKit
     void Material::Bind()
     {
         m_Shader->Bind();
+        m_Shader->SetUniformMat4f("u_MVP", WorldManager::Instance()->m_ProjectionMatrix * WorldManager::Instance()->m_ViewMatrix);
+
         m_Shader->SetUniform4f("m_MainColor", m_MainColor[0], m_MainColor[1], m_MainColor[2], m_MainColor[3]);
         if (m_MainTexture != nullptr){
             m_MainTexture->Bind();

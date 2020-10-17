@@ -7,6 +7,8 @@
 #include "../MaterialManager.h"
 #include "../TextureManager.h"
 
+#include "../WorldManager.h"
+
 namespace tests {
     Test3_ZBuffer::Test3_ZBuffer()
         :m_Trans1{0.0f, 0.0f, 0.0f},
@@ -21,8 +23,6 @@ namespace tests {
          m_TexOffset2{0.0f, 0.0f},
          m_TexScale2{1.0f, 1.0f}
     {
-        //easyGL::Renderer::Blend();
-
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -72,6 +72,14 @@ namespace tests {
         m_GameObject2.m_Material->SetMainColor(1.0f, 1.0f, 0.0f, 1.0f);        
         
         m_GameObject2.m_Material->SetMainTexture(OpenglToolKit::TextureManager::Instance()->CreateTexture("textures/white.png"));
+
+        OpenglToolKit::WorldManager::Instance()->m_ProjectionMatrix = glm::perspective(
+            glm::radians(60.0f), // The vertical Field of View, in radians: the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)
+            1.0f,       // Aspect Ratio. Depends on the size of your window. Notice that 4/3 == 800/600 == 1280/960, sounds familiar ?
+            0.1f,              // Near clipping plane. Keep as big as possible, or you'll get precision issues.
+            100.0f             // Far clipping plane. Keep as little as possible.
+        );
+        OpenglToolKit::WorldManager::Instance()->m_ViewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -5.0f));
     }
 
     Test3_ZBuffer::~Test3_ZBuffer()
@@ -98,15 +106,6 @@ namespace tests {
     void Test3_ZBuffer::OnRender()
     {
         easyGL::Renderer::Clear();
-
-        glm::mat4 projectionMatrix = glm::perspective(
-            glm::radians(60.0f), // The vertical Field of View, in radians: the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)
-            1.0f,       // Aspect Ratio. Depends on the size of your window. Notice that 4/3 == 800/600 == 1280/960, sounds familiar ?
-            0.1f,              // Near clipping plane. Keep as big as possible, or you'll get precision issues.
-            100.0f             // Far clipping plane. Keep as little as possible.
-        );
-        glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -5.0f));
-        glm::mat4 MVP = projectionMatrix * viewMatrix;
         {            
             glm::mat4 transformMatrix = m_GameObject1.m_Transform.GetTransformMatrix();
 
@@ -127,7 +126,6 @@ namespace tests {
             m_IndexBuffer->WriteData(0, m_GameObject1.m_Mesh.m_Triangles.size(), indices); // write indices in IndexBuffer
 
             m_GameObject1.m_Material->Bind();
-            m_GameObject2.m_Material->GetShader()->SetUniformMat4f("u_MVP", MVP);
             easyGL::Renderer::Draw(*m_VAO, *m_IndexBuffer, *(m_GameObject1.m_Material->GetShader()));
         }        
         {
@@ -150,7 +148,6 @@ namespace tests {
             m_IndexBuffer->WriteData(0, m_GameObject2.m_Mesh.m_Triangles.size(), indices); // write indices in IndexBuffer
 
             m_GameObject2.m_Material->Bind();
-            m_GameObject2.m_Material->GetShader()->SetUniformMat4f("u_MVP", MVP);
             easyGL::Renderer::Draw(*m_VAO, *m_IndexBuffer, *(m_GameObject2.m_Material->GetShader()));
         }
     }
