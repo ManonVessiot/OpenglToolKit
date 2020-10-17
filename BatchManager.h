@@ -1,37 +1,17 @@
 #pragma once
 
 #include "Batch.h"
-#include "GameObject.h"
 
 #include <vector>
 #include <memory>
-
-#include <unordered_map>
+#include <functional>
 
 namespace OpenglToolKit
 {
     class BatchManager
     {
-        private:
-            struct GameObjectState
-            {
-                bool State;
-                int AffectedBatch;
-
-                GameObjectState(bool active, int batchNum){
-                    State = active;
-                    AffectedBatch = batchNum;
-                }
-                
-                GameObjectState(){
-                    State = true;
-                    AffectedBatch = -1;
-                }
-            };
-        
+        private:        
             static BatchManager* m_Instance;
-
-            std::unordered_map<GameObject*, GameObjectState> m_GameObjectsToRender;
 
             std::vector<std::shared_ptr<Batch>> m_Batches;
             unsigned m_MaxNumVerticesPerBatch;
@@ -47,6 +27,14 @@ namespace OpenglToolKit
                 }
             }
 
+            struct CompareBatch : public std::binary_function<const Batch*, const Batch*, bool>
+            { 
+                bool operator()( const Batch* batchA, const Batch* batchB ) const 
+                { 
+                    return ( batchA->getPriority() > batchB->getPriority() ); 
+                }
+            };
+
             void EmptyBatch(bool emptyAll, Batch* BatchToEmpty); // not implemented
 
         public:
@@ -61,10 +49,7 @@ namespace OpenglToolKit
             static void Init(unsigned NumBatches, unsigned numVerticesPerBatch, unsigned numTrianglesPerBatch);
 
             void EmptyAll();
-            void Render(); // not implemented
-
-            void SetGameObjectActive(GameObject* go, bool active);
-            void DetroyGameObject(GameObject* go);
+            void Render(std::vector<OpenglToolKit::VertexData> vertices, std::vector<unsigned int> triangles); // not implemented
             
     };    
 } // namespace OpenglToolKit

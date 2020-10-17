@@ -40,7 +40,7 @@ namespace tests {
         m_GameObject.m_Mesh.AddTriangle(0, 1, 2);
         m_GameObject.m_Mesh.AddTriangle(2, 3, 0);
 
-        m_GameObject.m_Material = OpenglToolKit::MaterialManager::Instance()->CreateMaterial("shaders/BasicColor.shader");
+        m_GameObject.m_Material = OpenglToolKit::MaterialManager::Instance()->CreateMaterial("shaders/ShaderBase.shader");
         m_GameObject.m_Material->SetMainColor(1.0f, 0.0f, 0.0f, 1.0f);
         
         

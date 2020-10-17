@@ -1,22 +1,21 @@
 #include "GameObject.h"
 
-#include "BatchManager.h"
+#include "GameObjectManager.h"
 
 namespace OpenglToolKit
 {
     GameObject::GameObject()
     {
         m_Active = true;
-        SetActive(m_Active);
+        GameObjectManager::Instance()->AddGameObject(this);
     }
     
     GameObject::~GameObject()
     {
-        BatchManager::Instance()->DetroyGameObject(this);
+        GameObjectManager::Instance()->RemoveGameObject(this);
     }
 
     void GameObject::SetActive(bool active){
         m_Active = active;
-        BatchManager::Instance()->SetGameObjectActive(this, m_Active);
     }
 } // namespace OpenglToolKit

@@ -25,7 +25,7 @@ namespace OpenglToolKit
 
             std::unique_ptr<easyGL::VertexArray> m_VAO;
             std::unique_ptr<easyGL::VertexBuffer> m_VB;
-            std::unique_ptr<easyGL::Shader> m_Shader;
+            easyGL::Shader* m_Shader;
             std::unique_ptr<easyGL::IndexBuffer> m_IndexBuffer;
             
         public:

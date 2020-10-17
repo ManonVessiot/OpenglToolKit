@@ -2,18 +2,9 @@
 #version 330 core
 
 layout(location = 0) in vec4 v_position;
-layout(location = 1) in vec3 v_normal;
-layout(location = 2) in vec4 v_tangent;
-layout(location = 3) in vec2 v_texCoord;
-layout(location = 4) in vec4 v_color;
-
-out vec2 v_TexCoord;
-out vec4 v_Color;
 
 void main(){
    gl_Position = v_position;
-   v_TexCoord = v_texCoord;
-   v_Color = v_color;
 }
 
 #shader fragment
@@ -21,26 +12,6 @@ void main(){
 
 layout(location = 0) out vec4 color;
 
-in vec2 v_TexCoord;
-in vec4 v_Color;
-
-uniform vec4 m_MainColor;
-uniform vec2 m_MainTextureOffset;
-uniform vec2 m_MainTextureScale;
-uniform sampler2D u_Texture;
-
-void main()
-{
-   vec2 uv = v_TexCoord;
-
-   uv.x = uv.x * m_MainTextureScale.x;
-   uv.y = uv.y * m_MainTextureScale.y;
-
-   uv = uv + m_MainTextureOffset;
-   int x = int(uv.x);
-   uv.x = uv.x - x;
-   int y = int(uv.y);
-   uv.y = uv.y - y;
-
-   color = texture(u_Texture, uv) * m_MainColor;
+void main(){
+   color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 }

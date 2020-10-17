@@ -12,12 +12,12 @@ VENDOR_O = ./easyGL/vendor/stb_image/stb_image.o ./vendor/imgui/imgui.o ./vendor
 	./vendor/imgui/imgui_impl_opengl3.o ./vendor/imgui/imgui_widgets.o ./vendor/imgui/imgui_draw.o \
 	./vendor/imgui/imgui_demo.o
 
-TESTS = ./tests/Test.o ./tests/Test1_GameObject.o ./tests/Test2_Material.o ./tests/Test3_Batching.o ./tests/Test4_BatchManager.o
+TESTS = ./tests/Test.o ./tests/Test1_GameObject.o ./tests/Test2_Material.o ./tests/Test3_BatchManager.o
 
 EASY_GL = ./easyGL/Renderer.o ./easyGL/VertexBuffer.o ./easyGL/IndexBuffer.o ./easyGL/VertexArray.o \
 	./easyGL/VertexBufferLayout.o ./easyGL/Shader.o ./easyGL/Texture.o
 
-LOCAL = main.o WorldManager.o ImGuiManager.o Mesh.o Transform.o GameObject.o Material.o MaterialManager.o TextureManager.o \
+LOCAL = main.o WorldManager.o ImGuiManager.o Mesh.o Transform.o GameObject.o GameObjectManager.o Material.o MaterialManager.o TextureManager.o \
 	ShaderManager.o Batch.o BatchManager.o
 
 all: $(LOCAL)
@@ -39,6 +39,9 @@ MaterialManager.o: MaterialManager.cpp MaterialManager.h
 
 Material.o: Material.cpp Material.h
 	$(CXX) -c Material.cpp $(INC)
+
+GameObjectManager.o: GameObjectManager.cpp GameObjectManager.h
+	$(CXX) -c GameObjectManager.cpp $(INC)
 
 GameObject.o: GameObject.cpp GameObject.h
 	$(CXX) -c GameObject.cpp $(INC)

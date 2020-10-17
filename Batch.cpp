@@ -8,11 +8,7 @@ namespace OpenglToolKit
 {
     Batch::Batch(unsigned int maxNumVertices, unsigned int maxNumTriangles)
         :m_MaxNumVertices(maxNumVertices), m_NumUsedVertices(0), m_MaxNumTriangles(maxNumTriangles), m_NumUsedTriangles(0)
-    {
-        easyGL::Renderer::Blend();
-        
-        m_Shader = std::make_unique<easyGL::Shader>("shaders/BasicColor.shader");
-
+    {        
         m_VAO = std::make_unique<easyGL::VertexArray>();
         m_VB = std::make_unique<easyGL::VertexBuffer>(nullptr, m_MaxNumVertices * sizeof(VertexData), GL_DYNAMIC_DRAW); // allocate memory for m_MaxNumVertices vertex
         
@@ -82,11 +78,12 @@ namespace OpenglToolKit
             std::cout << "No vertices/triangles to render !" << std::endl;
             return;
         }
-
-        easyGL::Renderer::Clear();
-
-        m_Shader->Bind();
+        
+        // TODO : Definir Uniforms
+        // Draw
         easyGL::Renderer::Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
+        // TODO : Clear Batch
+        
     }
 
 } // namespace OpenglToolKit

@@ -4,8 +4,7 @@
 #include "tests/Test.h"
 #include "tests/Test1_GameObject.h"
 #include "tests/Test2_Material.h"
-#include "tests/Test3_Batching.h"
-#include "tests/Test4_BatchManager.h"
+#include "tests/Test3_BatchManager.h"
 
 int main(int argc, char const *argv[])
 {
@@ -25,8 +24,7 @@ int main(int argc, char const *argv[])
 
         testMenu->RegisterTest<tests::Test1_GameObject>("Test1_GameObject");
         testMenu->RegisterTest<tests::Test2_Material>("Test2_Material");
-        testMenu->RegisterTest<tests::Test3_Batching>("Test3_Batching");
-        testMenu->RegisterTest<tests::Test4_BatchManager>("Test4_BatchManager");
+        testMenu->RegisterTest<tests::Test3_BatchManager>("Test3_BatchManager");
 
         // Loop until the user closes the window
         while (!worldManager->CheckCloseFlag())

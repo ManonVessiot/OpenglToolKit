@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-
 namespace OpenglToolKit
 {
     BatchManager* BatchManager::m_Instance = nullptr;
@@ -24,44 +23,13 @@ namespace OpenglToolKit
     }
 
     void BatchManager::EmptyAll(){
+        std::cout << "EmptyAll" << std::endl;
         EmptyBatch(true, m_Batches[0].get());
     }
 
     // Render all the batchs
-    void BatchManager::Render(){
+    void BatchManager::Render(std::vector<OpenglToolKit::VertexData> vertices, std::vector<unsigned int> triangles){
         // not implemented
-        std::cout << "Rendering :" << std::endl;
-        for(std::unordered_map<GameObject*, GameObjectState>::iterator i = m_GameObjectsToRender.begin(); i!=m_GameObjectsToRender.end(); ++i) {
-            std::cout << "State : " << (i->second).State << std::endl;
-            std::cout << "Affected Batch : " << (i->second).AffectedBatch << std::endl;
-            if ((i->second).State){
-                std::cout << "  - Position : " << std::endl;
-                std::cout << i->first->m_Transform.m_Position.x << ", ";
-                std::cout << i->first->m_Transform.m_Position.y << ", ";
-                std::cout << i->first->m_Transform.m_Position.z << std::endl;
-                std::cout << "  - Rotation : " << std::endl;
-                std::cout << i->first->m_Transform.m_Rotation.x << ", ";
-                std::cout << i->first->m_Transform.m_Rotation.y << ", ";
-                std::cout << i->first->m_Transform.m_Rotation.z << ", ";
-                std::cout << i->first->m_Transform.m_Rotation.w << std::endl;
-                std::cout << "  - Scale : " << std::endl;
-                std::cout << i->first->m_Transform.m_Scale.x << ", ";
-                std::cout << i->first->m_Transform.m_Scale.y << ", ";
-                std::cout << i->first->m_Transform.m_Scale.z << std::endl;
-                std::cout << std::endl;
-            }
-        }
-    }
-
-    // add or remove gameobject to the list of gameObject to render
-    void BatchManager::SetGameObjectActive(GameObject* go, bool active){
-        m_GameObjectsToRender[go] = GameObjectState(active, -1);
-    }
-
-    void BatchManager::DetroyGameObject(GameObject* go){
-        if (m_GameObjectsToRender.find(go) != m_GameObjectsToRender.end())
-        {
-            m_GameObjectsToRender.erase(go);
-        }
+        std::cout << "Rendering :" << vertices.size() << "vertices and " << triangles.size() << " triangles" << std::endl;
     }
 } // namespace OpenglToolKit
