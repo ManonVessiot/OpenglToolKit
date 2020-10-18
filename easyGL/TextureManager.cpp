@@ -1,14 +1,14 @@
 #include "TextureManager.h"
 
-namespace OpenglToolKit
+namespace easyGL
 {
     TextureManager* TextureManager::m_Instance = nullptr;
 
-    easyGL::Texture* TextureManager::CreateTexture(std::string textureFileName){
+    Texture* TextureManager::CreateTexture(std::string textureFileName){
         if (m_Textures.find(textureFileName) == m_Textures.end()){
-            m_Textures[textureFileName] = new easyGL::Texture(textureFileName);
+            m_Textures[textureFileName] = new Texture(textureFileName);
         }
         return m_Textures[textureFileName];
     }
 
-} // namespace OpenglToolKit
+} // namespace easyGL

@@ -3,9 +3,9 @@
 #include <vector>
 #include <unordered_map>
 
-#include "easyGL/Texture.h"
+#include "Texture.h"
 
-namespace OpenglToolKit
+namespace easyGL
 {
     class TextureManager
     {
@@ -22,7 +22,7 @@ namespace OpenglToolKit
                 }
             }
 
-            std::unordered_map<std::string, easyGL::Texture*> m_Textures;
+            std::unordered_map<std::string, Texture*> m_Textures;
             
         public:
             static TextureManager* Instance()
@@ -33,8 +33,8 @@ namespace OpenglToolKit
                 return m_Instance;
             }
 
-            easyGL::Texture* CreateTexture(std::string textureFileName);
+            Texture* CreateTexture(std::string textureFileName);
             
     };
     
-} // namespace OpenglToolKit
+} // namespace easyGL

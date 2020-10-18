@@ -1,15 +1,16 @@
 #include "Material.h"
 
-#include "ShaderManager.h"
 #include "Property.h"
 #include "WorldManager.h"
+
+#include "easyGL/ShaderManager.h"
 
 namespace OpenglToolKit
 {
     Material::Material(std::string shaderFileName)
         :m_MainColor{1.0f, 1.0f, 1.0f, 1.0f}, m_MainTextureOffset{0.0f, 0.0f}, m_MainTextureScale{1.0f, 1.0f}
     {
-        m_Shader = ShaderManager::Instance()->GetSaher(shaderFileName);
+        m_Shader = easyGL::ShaderManager::Instance()->GetSaher(shaderFileName);
     }
 
     void Material::SetMainTexture(easyGL::Texture* text)

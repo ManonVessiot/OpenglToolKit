@@ -5,7 +5,7 @@
 #include "../vendor/imgui/imgui.h"
 
 #include "../MaterialManager.h"
-#include "../TextureManager.h"
+#include "../easyGL/TextureManager.h"
 
 #include "../WorldManager.h"
 
@@ -55,7 +55,7 @@ namespace tests {
         m_GameObject1.m_Material = OpenglToolKit::MaterialManager::Instance()->CreateMaterial("shaders/ShaderBase.shader");
         m_GameObject1.m_Material->SetMainColor(1.0f, 0.0f, 1.0f, 1.0f);        
         
-        m_GameObject1.m_Material->SetMainTexture(OpenglToolKit::TextureManager::Instance()->CreateTexture("textures/white.png"));
+        m_GameObject1.m_Material->SetMainTexture(easyGL::TextureManager::Instance()->CreateTexture("textures/white.png"));
         
         /////////
 
@@ -71,7 +71,7 @@ namespace tests {
         m_GameObject2.m_Material = OpenglToolKit::MaterialManager::Instance()->CreateMaterial("shaders/ShaderBase.shader");
         m_GameObject2.m_Material->SetMainColor(1.0f, 1.0f, 0.0f, 1.0f);        
         
-        m_GameObject2.m_Material->SetMainTexture(OpenglToolKit::TextureManager::Instance()->CreateTexture("textures/white.png"));
+        m_GameObject2.m_Material->SetMainTexture(easyGL::TextureManager::Instance()->CreateTexture("textures/white.png"));
 
         OpenglToolKit::WorldManager::Instance()->m_ProjectionMatrix = glm::perspective(
             glm::radians(60.0f), // The vertical Field of View, in radians: the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)

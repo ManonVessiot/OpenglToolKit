@@ -16,10 +16,10 @@ TESTS = ./tests/Test.o ./tests/Test1_GameObject.o ./tests/Test2_Material.o ./tes
 	./tests/Test3_ZBuffer.o
 
 EASY_GL = ./easyGL/Renderer.o ./easyGL/VertexBuffer.o ./easyGL/IndexBuffer.o ./easyGL/VertexArray.o \
-	./easyGL/VertexBufferLayout.o ./easyGL/Shader.o ./easyGL/Texture.o
+	./easyGL/VertexBufferLayout.o ./easyGL/Shader.o ./easyGL/Texture.o ./easyGL/TextureManager.o ./easyGL/ShaderManager.o
 
-LOCAL = main.o WorldManager.o ImGuiManager.o Mesh.o Transform.o GameObject.o GameObjectManager.o Material.o MaterialManager.o TextureManager.o \
-	ShaderManager.o Batch.o BatchManager.o
+LOCAL = main.o WorldManager.o ImGuiManager.o Mesh.o Transform.o GameObject.o GameObjectManager.o Material.o MaterialManager.o \
+	Batch.o BatchManager.o
 
 all: $(LOCAL)
 
@@ -28,12 +28,6 @@ BatchManager.o: BatchManager.cpp BatchManager.h
 
 Batch.o: Batch.cpp Batch.h
 	$(CXX) -c Batch.cpp $(INC)
-
-ShaderManager.o: ShaderManager.cpp ShaderManager.h
-	$(CXX) -c ShaderManager.cpp $(INC)
-
-TextureManager.o: TextureManager.cpp TextureManager.h
-	$(CXX) -c TextureManager.cpp $(INC)
 
 MaterialManager.o: MaterialManager.cpp MaterialManager.h
 	$(CXX) -c MaterialManager.cpp $(INC)

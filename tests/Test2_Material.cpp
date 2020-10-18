@@ -5,7 +5,7 @@
 #include "../vendor/imgui/imgui.h"
 
 #include "../MaterialManager.h"
-#include "../TextureManager.h"
+#include "../easyGL/TextureManager.h"
 
 namespace tests {
     Test2_Material::Test2_Material()
@@ -44,7 +44,7 @@ namespace tests {
         m_GameObject.m_Material->SetMainColor(1.0f, 0.0f, 0.0f, 1.0f);
         
         
-        m_GameObject.m_Material->SetMainTexture(OpenglToolKit::TextureManager::Instance()->CreateTexture("textures/zelda.png"));
+        m_GameObject.m_Material->SetMainTexture(easyGL::TextureManager::Instance()->CreateTexture("textures/zelda.png"));
     }
 
     Test2_Material::~Test2_Material()

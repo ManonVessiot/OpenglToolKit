@@ -2,10 +2,16 @@
 
 #include <unordered_map>
 
-#include "easyGL/Shader.h"
+#include "Shader.h"
 
-namespace OpenglToolKit
+namespace easyGL
 {
+    struct ShaderProgramSource
+    {
+        std::string VertexSource;
+        std::string FragmentSource;
+    };
+
     class ShaderManager
     {
         private:
@@ -16,12 +22,14 @@ namespace OpenglToolKit
                 if (m_Instance){
                     delete m_Instance;
                 }
-                for(std::unordered_map<std::string, easyGL::Shader*>::iterator i = m_Shaders.begin(); i!=m_Shaders.end(); ++i) {
+                for(std::unordered_map<std::string, Shader*>::iterator i = m_Shaders.begin(); i!=m_Shaders.end(); ++i) {
                     delete i->second;
                 }
             }
 
-            std::unordered_map<std::string, easyGL::Shader*> m_Shaders;
+            std::unordered_map<std::string, Shader*> m_Shaders;
+
+            ShaderProgramSource ParseShader(const std::string& filepath);
             
         public:
             static ShaderManager* Instance()
@@ -32,8 +40,8 @@ namespace OpenglToolKit
                 return m_Instance;
             }
 
-            easyGL::Shader* GetSaher(std::string fileName);
+            Shader* GetSaher(std::string filepath);
             
     };
     
-} // namespace OpenglToolKit
+} // namespace easyGL

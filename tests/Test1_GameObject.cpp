@@ -4,6 +4,8 @@
 
 #include "../vendor/imgui/imgui.h"
 
+#include "../easyGL/ShaderManager.h"
+
 namespace tests {
     Test1_GameObject::Test1_GameObject()
         :m_Trans{0.0f, 0.0f, 0.0f},
@@ -13,7 +15,7 @@ namespace tests {
 
         easyGL::Renderer::Blend();
         
-        m_Shader = std::make_unique<easyGL::Shader>("shaders/BasicColor.shader");
+        m_Shader = easyGL::ShaderManager::Instance()->GetSaher("shaders/BasicColor.shader");
         
         m_VAO = std::make_unique<easyGL::VertexArray>();
         m_VB = std::make_unique<easyGL::VertexBuffer>(nullptr, 300 * sizeof(OpenglToolKit::VertexData), GL_DYNAMIC_DRAW); // allocate memory for 300 vertex
