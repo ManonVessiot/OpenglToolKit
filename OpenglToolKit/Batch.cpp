@@ -3,11 +3,13 @@
 #include <iostream>
 
 #include "../easyGL/Renderer.h"
+#include "BatchManager.h"
 
 namespace OpenglToolKit
 {
     Batch::Batch(unsigned int maxNumVertices, unsigned int maxNumTriangles)
-        :m_MaxNumVertices(maxNumVertices), m_NumUsedVertices(0), m_MaxNumTriangles(maxNumTriangles), m_NumUsedTriangles(0)
+        :m_MaxNumVertices(maxNumVertices), m_NumUsedVertices(0), m_MaxNumTriangles(maxNumTriangles), m_NumUsedTriangles(0),
+        m_Priority(0)
     {        
         m_VAO = std::make_unique<easyGL::VertexArray>();
         m_VB = std::make_unique<easyGL::VertexBuffer>(nullptr, m_MaxNumVertices * sizeof(VertexData), GL_DYNAMIC_DRAW); // allocate memory for m_MaxNumVertices vertex
@@ -41,6 +43,11 @@ namespace OpenglToolKit
 
     int Batch::getPriority() const{
         return m_Priority;
+    }
+
+    void Batch::AddData(std::vector<VertexData> &vertices, std::vector<unsigned int> &triangles, Material* mat){
+        m_Material = mat;
+        AddData(vertices, triangles);
     }
 
     void Batch::AddData(std::vector<VertexData> &vertices, std::vector<unsigned int> &triangles)
@@ -78,11 +85,26 @@ namespace OpenglToolKit
             std::cout << "No vertices/triangles to render !" << std::endl;
             return;
         }
+        if (m_Material->IsTransparent())
+        {
+            easyGL::Renderer::Depth(false);
+            easyGL::Renderer::Blend(true);
+        }
+        else
+        {
+            easyGL::Renderer::Blend(false);
+            easyGL::Renderer::Depth(true);
+        }
         
-        // TODO : Definir Uniforms
+        
+        // Define Uniforms
+        m_Material->Bind();
         // Draw
-        easyGL::Renderer::Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
-        // TODO : Clear Batch
+        easyGL::Renderer::Draw(*m_VAO, *m_IndexBuffer, *(m_Material->GetShader()));
+        BatchManager::nbDrawCallPerframe += 1;
+        // Clear Batch
+        m_NumUsedVertices = 0;
+        m_NumUsedTriangles = 0;
         
     }
 

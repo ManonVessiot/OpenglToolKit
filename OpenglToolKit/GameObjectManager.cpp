@@ -19,7 +19,7 @@ namespace OpenglToolKit
                     vertices.push_back(m_GameObjects[i]->m_Mesh.m_Vertices[j]); 
                     vertices[j].Position = transformMatrix * glm::vec4(vertices[j].Position, 1.0f); 
                 }
-                BatchManager::Instance()->Render(vertices, m_GameObjects[i]->m_Mesh.m_Triangles);
+                BatchManager::Instance()->Render(vertices, m_GameObjects[i]->m_Mesh.m_Triangles, m_GameObjects[i]->m_Material);
             }
         }
     }

@@ -18,10 +18,6 @@ namespace tests {
          m_Scale2{1.0f, 1.0f, 1.0f}
     {
         glEnable(GL_DEPTH_TEST);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glAlphaFunc (GL_GREATER, 0.1);
-        glEnable(GL_ALPHA_TEST);
         
         m_VAO = std::make_unique<easyGL::VertexArray>();
         m_VB = std::make_unique<easyGL::VertexBuffer>(nullptr, 300 * sizeof(OpenglToolKit::VertexData), GL_DYNAMIC_DRAW); // allocate memory for 300 vertex

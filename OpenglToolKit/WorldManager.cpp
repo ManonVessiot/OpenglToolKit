@@ -38,7 +38,6 @@ namespace OpenglToolKit
         }
         std::cout << glGetString(GL_VERSION) << std::endl;
 
-        easyGL::Renderer::Blend();
         return true;
     }
 

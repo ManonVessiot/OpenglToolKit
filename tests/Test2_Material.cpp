@@ -15,7 +15,7 @@ namespace tests {
          m_TexOffset{0.0f, 0.0f},
          m_TexScale{1.0f, 1.0f}
     {
-        easyGL::Renderer::Blend();
+        easyGL::Renderer::Blend(true);
         
         m_VAO = std::make_unique<easyGL::VertexArray>();
         m_VB = std::make_unique<easyGL::VertexBuffer>(nullptr, 300 * sizeof(OpenglToolKit::VertexData), GL_DYNAMIC_DRAW); // allocate memory for 300 vertex

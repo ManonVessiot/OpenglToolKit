@@ -7,6 +7,7 @@
 #include "../easyGL/Shader.h"
 
 #include "Mesh.h"
+#include "Material.h"
 
 #include <memory>
 
@@ -25,7 +26,7 @@ namespace OpenglToolKit
 
             std::unique_ptr<easyGL::VertexArray> m_VAO;
             std::unique_ptr<easyGL::VertexBuffer> m_VB;
-            easyGL::Shader* m_Shader;
+            Material* m_Material = nullptr;
             std::unique_ptr<easyGL::IndexBuffer> m_IndexBuffer;
             
         public:
@@ -37,7 +38,10 @@ namespace OpenglToolKit
             Batch* getFullest(Batch* pBatch);
             int getPriority() const;
 
+            Material* GetMaterial(){ return m_Material; }
+
             void AddData(std::vector<VertexData> &vertices, std::vector<unsigned int> &triangles);
+            void AddData(std::vector<VertexData> &vertices, std::vector<unsigned int> &triangles, Material* mat);
             void Render();
     };    
 } // namespace OpenglToolKit

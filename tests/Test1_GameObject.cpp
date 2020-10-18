@@ -11,10 +11,7 @@ namespace tests {
         :m_Trans{0.0f, 0.0f, 0.0f},
          m_Rot{0.0f, 0.0f, 0.0f},
          m_Scale{1.0f, 1.0f, 1.0f}
-    {
-
-        easyGL::Renderer::Blend();
-        
+    {        
         m_Shader = easyGL::ShaderManager::Instance()->GetSaher("shaders/BasicColor.shader");
         
         m_VAO = std::make_unique<easyGL::VertexArray>();

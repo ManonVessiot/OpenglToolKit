@@ -18,6 +18,7 @@ namespace tests
         private:
             OpenglToolKit::GameObject m_GameObject1;
             OpenglToolKit::GameObject m_GameObject2;
+            OpenglToolKit::GameObject m_GameObject3;
             
             bool m_active1;
             float m_Trans1[3];
@@ -28,6 +29,11 @@ namespace tests
             float m_Trans2[3];
             float m_Rot2[3];
             float m_Scale2[3];
+            
+            bool m_active3;
+            float m_Trans3[3];
+            float m_Rot3[3];
+            float m_Scale3[3];
 
         public:
             Test4_BatchManager();
