@@ -4,9 +4,12 @@
 
 INC = -I /usr/include/
 
-TESTS = Test.o Test1_GameObject.o Test2_Material.o Test3_ZBuffer.o Test4_BatchManager.o
+TESTS = Test.o Test1_GameObject.o Test2_Material.o Test3_ZBuffer.o Test4_BatchManager.o Test5_MeshBuilder.o
 
 all: $(TESTS)
+
+Test5_MeshBuilder.o: Test5_MeshBuilder.cpp Test5_MeshBuilder.h Test.h
+	$(CXX) -c Test5_MeshBuilder.cpp $(INC)
 
 Test4_BatchManager.o: Test4_BatchManager.cpp Test4_BatchManager.h Test.h
 	$(CXX) -c Test4_BatchManager.cpp $(INC)

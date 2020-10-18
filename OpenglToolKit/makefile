@@ -5,9 +5,12 @@
 INC = -I /usr/include/
 
 OPENGL_TOOLKIT = WorldManager.o ImGuiManager.o Mesh.o Transform.o GameObject.o GameObjectManager.o Material.o MaterialManager.o \
-	Batch.o BatchManager.o
+	Batch.o BatchManager.o MeshBuilder.o
 
 all: $(OPENGL_TOOLKIT)
+
+MeshBuilder.o: MeshBuilder.cpp MeshBuilder.h
+	$(CXX) -c MeshBuilder.cpp $(INC)
 
 BatchManager.o: BatchManager.cpp BatchManager.h
 	$(CXX) -c BatchManager.cpp $(INC)

@@ -6,6 +6,7 @@
 #include "tests/Test2_Material.h"
 #include "tests/Test4_BatchManager.h"
 #include "tests/Test3_ZBuffer.h"
+#include "tests/Test5_MeshBuilder.h"
 
 int main(int argc, char const *argv[])
 {
@@ -35,6 +36,7 @@ int main(int argc, char const *argv[])
         testMenu->RegisterTest<tests::Test2_Material>("Test2_Material");
         testMenu->RegisterTest<tests::Test3_ZBuffer>("Test3_ZBuffer");
         testMenu->RegisterTest<tests::Test4_BatchManager>("Test4_BatchManager");
+        testMenu->RegisterTest<tests::Test5_MeshBuilder>("Test5_MeshBuilder");
 
         // Loop until the user closes the window
         while (!worldManager->CheckCloseFlag())
