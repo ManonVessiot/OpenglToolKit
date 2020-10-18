@@ -22,16 +22,10 @@ namespace tests
             float m_Trans1[3];
             float m_Rot1[3];
             float m_Scale1[3];
-
-            float m_TexOffset1[2];
-            float m_TexScale1[2];
             
             float m_Trans2[3];
             float m_Rot2[3];
             float m_Scale2[3];
-
-            float m_TexOffset2[2];
-            float m_TexScale2[2];
             
             std::unique_ptr<easyGL::VertexArray> m_VAO; 
             std::unique_ptr<easyGL::IndexBuffer> m_IndexBuffer;

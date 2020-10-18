@@ -7,21 +7,15 @@
 #include "../MaterialManager.h"
 #include "../easyGL/TextureManager.h"
 
-#include "../WorldManager.h"
-
 namespace tests {
     Test3_ZBuffer::Test3_ZBuffer()
         :m_Trans1{0.0f, 0.0f, 0.0f},
          m_Rot1{0.0f, 0.0f, 0.0f},
          m_Scale1{1.0f, 1.0f, 1.0f},
-         m_TexOffset1{0.0f, 0.0f},
-         m_TexScale1{1.0f, 1.0f},
 
          m_Trans2{0.0f, 0.0f, 0.0f},
          m_Rot2{0.0f, 0.0f, 0.0f},
-         m_Scale2{1.0f, 1.0f, 1.0f},
-         m_TexOffset2{0.0f, 0.0f},
-         m_TexScale2{1.0f, 1.0f}
+         m_Scale2{1.0f, 1.0f, 1.0f}
     {
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
@@ -72,14 +66,6 @@ namespace tests {
         m_GameObject2.m_Material->SetMainColor(1.0f, 1.0f, 0.0f, 1.0f);        
         
         m_GameObject2.m_Material->SetMainTexture(easyGL::TextureManager::Instance()->CreateTexture("textures/white.png"));
-
-        OpenglToolKit::WorldManager::Instance()->m_ProjectionMatrix = glm::perspective(
-            glm::radians(60.0f), // The vertical Field of View, in radians: the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)
-            1.0f,       // Aspect Ratio. Depends on the size of your window. Notice that 4/3 == 800/600 == 1280/960, sounds familiar ?
-            0.1f,              // Near clipping plane. Keep as big as possible, or you'll get precision issues.
-            100.0f             // Far clipping plane. Keep as little as possible.
-        );
-        OpenglToolKit::WorldManager::Instance()->m_ViewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -5.0f));
     }
 
     Test3_ZBuffer::~Test3_ZBuffer()
@@ -88,16 +74,10 @@ namespace tests {
 
     void Test3_ZBuffer::OnUpdate(float deltaTime)
     {
-        m_GameObject1.m_Material->SetMainTextureOffset(m_TexOffset1[0], m_TexOffset1[1]);
-        m_GameObject1.m_Material->SetMainTextureScale(m_TexScale1[0], m_TexScale1[1]);
-
         m_GameObject1.m_Transform.m_Position = glm::vec3(m_Trans1[0], m_Trans1[1], m_Trans1[2]);
         m_GameObject1.m_Transform.m_Rotation = glm::quat(glm::vec3(glm::radians(m_Rot1[0]), glm::radians(m_Rot1[1]), glm::radians(m_Rot1[2])));
         m_GameObject1.m_Transform.m_Scale = glm::vec3(m_Scale1[0], m_Scale1[1], m_Scale1[2]);
         /////////
-        m_GameObject2.m_Material->SetMainTextureOffset(m_TexOffset2[0], m_TexOffset2[1]);
-        m_GameObject2.m_Material->SetMainTextureScale(m_TexScale2[0], m_TexScale2[1]);
-
         m_GameObject2.m_Transform.m_Position = glm::vec3(m_Trans2[0], m_Trans2[1], m_Trans2[2]);
         m_GameObject2.m_Transform.m_Rotation = glm::quat(glm::vec3(glm::radians(m_Rot2[0]), glm::radians(m_Rot2[1]), glm::radians(m_Rot2[2])));
         m_GameObject2.m_Transform.m_Scale = glm::vec3(m_Scale2[0], m_Scale2[1], m_Scale2[2]);
@@ -157,13 +137,9 @@ namespace tests {
         ImGui::DragFloat3("Translation1", m_Trans1, 0.1f);
         ImGui::DragFloat3("Rotation1", m_Rot1, 0.1f);
         ImGui::DragFloat3("Scale1", m_Scale1, 0.1f);
-        ImGui::DragFloat2("TexOffset1", m_TexOffset1, 0.1f);
-        ImGui::DragFloat2("m_TexScale1", m_TexScale1, 0.1f);
 
         ImGui::DragFloat3("Translation2", m_Trans2, 0.1f);
         ImGui::DragFloat3("Rotation2", m_Rot2, 0.1f);
         ImGui::DragFloat3("Scale2", m_Scale2, 0.1f);
-        ImGui::DragFloat2("TexOffset2", m_TexOffset2, 0.1f);
-        ImGui::DragFloat2("m_TexScale2", m_TexScale2, 0.1f);
     }
 }

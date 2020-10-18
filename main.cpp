@@ -17,6 +17,14 @@ int main(int argc, char const *argv[])
     if (!worldManager->Init(width, height)){
         return -1;
     }
+    OpenglToolKit::WorldManager::Instance()->m_ProjectionMatrix = glm::perspective(
+        glm::radians(60.0f), // The vertical Field of View, in radians: the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)
+        1.0f,       // Aspect Ratio. Depends on the size of your window. Notice that 4/3 == 800/600 == 1280/960, sounds familiar ?
+        0.1f,              // Near clipping plane. Keep as big as possible, or you'll get precision issues.
+        100.0f             // Far clipping plane. Keep as little as possible.
+    );
+    OpenglToolKit::WorldManager::Instance()->m_ViewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -5.0f));
+
     imGuiManager->Init_imgui();
     {
         tests::Test* currentTest = nullptr;

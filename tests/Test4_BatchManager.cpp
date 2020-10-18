@@ -6,6 +6,10 @@
 
 #include "../GameObjectManager.h"
 #include "../BatchManager.h"
+#include "../MaterialManager.h"
+#include "../WorldManager.h"
+
+#include "../easyGL/TextureManager.h"
 
 
 namespace tests {
@@ -28,6 +32,11 @@ namespace tests {
         m_GameObject1.m_Mesh.AddTriangle(0, 1, 2);
         m_GameObject1.m_Mesh.AddTriangle(2, 3, 0);
 
+        m_GameObject1.m_Material = OpenglToolKit::MaterialManager::Instance()->CreateMaterial("shaders/ShaderBase.shader");
+        m_GameObject1.m_Material->SetMainColor(1.0f, 0.0f, 0.0f, 1.0f);        
+        m_GameObject1.m_Material->SetMainTexture(easyGL::TextureManager::Instance()->CreateTexture("textures/white.png"));
+
+
         m_GameObject2.m_Mesh.Clear();
         m_GameObject2.m_Mesh.AddVertex(glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec3(0.0f), glm::vec4(0.0f), glm::vec2(0.0f, 0.0f), glm::vec4(1.0f));
         m_GameObject2.m_Mesh.AddVertex(glm::vec3( 0.5f, -0.5f, 0.0f), glm::vec3(0.0f), glm::vec4(0.0f), glm::vec2(1.0f, 0.0f), glm::vec4(1.0f));
@@ -36,6 +45,10 @@ namespace tests {
 
         m_GameObject2.m_Mesh.AddTriangle(0, 1, 2);
         m_GameObject2.m_Mesh.AddTriangle(2, 3, 0);
+
+        m_GameObject2.m_Material = OpenglToolKit::MaterialManager::Instance()->CreateMaterial("shaders/ShaderBase.shader");
+        m_GameObject2.m_Material->SetMainColor(1.0f, 0.0f, 0.0f, 1.0f);        
+        m_GameObject2.m_Material->SetMainTexture(easyGL::TextureManager::Instance()->CreateTexture("textures/white.png"));
 
         OpenglToolKit::BatchManager::Init(20, 2000, 1000);
     }
