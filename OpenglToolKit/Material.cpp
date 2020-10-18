@@ -3,7 +3,7 @@
 #include "Property.h"
 #include "WorldManager.h"
 
-#include "easyGL/ShaderManager.h"
+#include "../easyGL/ShaderManager.h"
 
 namespace OpenglToolKit
 {

@@ -4,10 +4,10 @@
 
 #include "../vendor/imgui/imgui.h"
 
-#include "../GameObjectManager.h"
-#include "../BatchManager.h"
-#include "../MaterialManager.h"
-#include "../WorldManager.h"
+#include "../OpenglToolKit/GameObjectManager.h"
+#include "../OpenglToolKit/BatchManager.h"
+#include "../OpenglToolKit/MaterialManager.h"
+#include "../OpenglToolKit/WorldManager.h"
 
 #include "../easyGL/TextureManager.h"
 

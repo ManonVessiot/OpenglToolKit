@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "easyGL/Renderer.h"
+#include "../easyGL/Renderer.h"
 
 namespace OpenglToolKit
 {

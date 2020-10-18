@@ -2,9 +2,9 @@
 
 #include <vector>
 
-#include "easyGL/VertexArray.h"
-#include "easyGL/IndexBuffer.h"
-#include "easyGL/Shader.h"
+#include "../easyGL/VertexArray.h"
+#include "../easyGL/IndexBuffer.h"
+#include "../easyGL/Shader.h"
 
 #include "Mesh.h"
 

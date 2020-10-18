@@ -2,7 +2,7 @@
 
 #include "Test.h"
 
-#include "../GameObject.h"
+#include "../OpenglToolKit/GameObject.h"
 
 #include "../easyGL/Renderer.h"
 #include "../easyGL/VertexArray.h"

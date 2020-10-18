@@ -1,7 +1,7 @@
 #pragma once
 
-#include "easyGL/Shader.h"
-#include "easyGL/Texture.h"
+#include "../easyGL/Shader.h"
+#include "../easyGL/Texture.h"
 
 #include "Property.h"
 

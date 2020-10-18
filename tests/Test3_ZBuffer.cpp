@@ -4,7 +4,7 @@
 
 #include "../vendor/imgui/imgui.h"
 
-#include "../MaterialManager.h"
+#include "../OpenglToolKit/MaterialManager.h"
 #include "../easyGL/TextureManager.h"
 
 namespace tests {

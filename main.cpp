@@ -1,5 +1,5 @@
-#include "WorldManager.h"
-#include "ImGuiManager.h"
+#include "OpenglToolKit/WorldManager.h"
+#include "OpenglToolKit/ImGuiManager.h"
 
 #include "tests/Test.h"
 #include "tests/Test1_GameObject.h"

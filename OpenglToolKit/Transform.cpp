@@ -1,6 +1,6 @@
 #include "Transform.h"
 
-#include "glm/gtx/euler_angles.hpp"
+#include <glm/gtx/euler_angles.hpp>
 
 namespace OpenglToolKit
 {

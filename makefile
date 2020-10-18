@@ -18,46 +18,19 @@ TESTS = ./tests/Test.o ./tests/Test1_GameObject.o ./tests/Test2_Material.o ./tes
 EASY_GL = ./easyGL/Renderer.o ./easyGL/VertexBuffer.o ./easyGL/IndexBuffer.o ./easyGL/VertexArray.o \
 	./easyGL/VertexBufferLayout.o ./easyGL/Shader.o ./easyGL/Texture.o ./easyGL/TextureManager.o ./easyGL/ShaderManager.o
 
-LOCAL = main.o WorldManager.o ImGuiManager.o Mesh.o Transform.o GameObject.o GameObjectManager.o Material.o MaterialManager.o \
-	Batch.o BatchManager.o
+OPENGL_TOOLKIT = ./OpenglToolKit/WorldManager.o ./OpenglToolKit/ImGuiManager.o ./OpenglToolKit/Mesh.o ./OpenglToolKit/Transform.o \
+	./OpenglToolKit/GameObject.o ./OpenglToolKit/GameObjectManager.o ./OpenglToolKit/Material.o ./OpenglToolKit/MaterialManager.o \
+	./OpenglToolKit/Batch.o ./OpenglToolKit/BatchManager.o
 
-all: $(LOCAL)
+LOCAL = main.o 
 
-BatchManager.o: BatchManager.cpp BatchManager.h
-	$(CXX) -c BatchManager.cpp $(INC)
+all: exc
 
-Batch.o: Batch.cpp Batch.h
-	$(CXX) -c Batch.cpp $(INC)
-
-MaterialManager.o: MaterialManager.cpp MaterialManager.h
-	$(CXX) -c MaterialManager.cpp $(INC)
-
-Material.o: Material.cpp Material.h
-	$(CXX) -c Material.cpp $(INC)
-
-GameObjectManager.o: GameObjectManager.cpp GameObjectManager.h
-	$(CXX) -c GameObjectManager.cpp $(INC)
-
-GameObject.o: GameObject.cpp GameObject.h
-	$(CXX) -c GameObject.cpp $(INC)
-
-Transform.o: Transform.cpp Transform.h
-	$(CXX) -c Transform.cpp $(INC)
-
-Mesh.o: Mesh.cpp Mesh.h
-	$(CXX) -c Mesh.cpp $(INC)
-
-ImGuiManager.o: ImGuiManager.cpp ImGuiManager.h
-	$(CXX) -c ImGuiManager.cpp $(INC)
-
-WorldManager.o: WorldManager.cpp WorldManager.h
-	$(CXX) -c WorldManager.cpp $(INC)
-
-main.o: main.cpp WorldManager.h ImGuiManager.h Mesh.h Transform.h GameObject.h
+main.o: main.cpp
 	$(CXX) -c main.cpp $(INC)
 
-exc: $(LOCAL) $(EASY_GL) $(TESTS) $(VENDOR_O)
-	$(CXX) -o exc $(LOCAL) $(EASY_GL) $(TESTS) $(VENDOR_O) $(LIBS)
+exc: $(LOCAL) $(OPENGL_TOOLKIT) $(EASY_GL) $(TESTS) $(VENDOR_O)
+	$(CXX) -o exc $(LOCAL) $(OPENGL_TOOLKIT) $(EASY_GL) $(TESTS) $(VENDOR_O) $(LIBS)
 
 clean :
 	rm -f *.o exc imgui.ini
