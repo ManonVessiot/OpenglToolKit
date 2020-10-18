@@ -8,7 +8,8 @@
 namespace OpenglToolKit
 {
     Material::Material(std::string shaderFileName)
-        :m_MainColor{1.0f, 1.0f, 1.0f, 1.0f}, m_MainTextureOffset{0.0f, 0.0f}, m_MainTextureScale{1.0f, 1.0f}
+        :m_MainColor{1.0f, 1.0f, 1.0f, 1.0f}, m_MainTextureOffset{0.0f, 0.0f}, m_MainTextureScale{1.0f, 1.0f},
+        m_transparencyEnable(false)
     {
         m_Shader = easyGL::ShaderManager::Instance()->GetSaher(shaderFileName);
     }

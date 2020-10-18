@@ -19,6 +19,8 @@ namespace OpenglToolKit
             float m_MainTextureOffset[2];
             float m_MainTextureScale[2];
 
+            float m_transparencyEnable;
+
             std::vector<std::string> m_PropertyName;
             std::vector<Property> m_Property;
 
@@ -34,6 +36,9 @@ namespace OpenglToolKit
             void SetMainColor(float v0, float v1, float v2, float v3);
             void SetMainTextureOffset(float v0, float v1);
             void SetMainTextureScale(float v0, float v1);
+
+            void EnableTransparency(bool enable){ m_transparencyEnable = enable; }
+            bool IsTransparent(){ return m_transparencyEnable; }
 
             void AddProperty(std::string name, Property property);
 
