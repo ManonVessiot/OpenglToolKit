@@ -35,7 +35,10 @@ namespace OpenglToolKit
     void GameObjectManager::Render() const{
         std::priority_queue<GameObject*, std::vector<GameObject*>, CompareGameObject> queue;
         for (int i = 0; i < m_GameObjects.size(); i++){
-            queue.push(m_GameObjects[i]);
+            if (m_GameObjects[i]->m_Active)
+            {
+                queue.push(m_GameObjects[i]);
+            }
         }
 
         glm::vec3 cameraPostion;
@@ -45,21 +48,20 @@ namespace OpenglToolKit
         while (!queue.empty())
         {
             GameObject* go = queue.top();
-            if (go->m_Active){
-                glm::mat4 transformMatrix = go->m_Transform.GetTransformMatrix();
-                unsigned int numberOfVertex = go->m_Mesh.m_Vertices.size();
-                std::vector<OpenglToolKit::VertexData> vertices;
-                for (int j = 0; j < numberOfVertex; j++){
-                    vertices.push_back(go->m_Mesh.m_Vertices[j]); 
-                    vertices[j].Position = transformMatrix * glm::vec4(vertices[j].Position, 1.0f);
-                }
-                BatchManager::Instance()->Render(vertices, go->m_Mesh.m_Triangles, go->m_Material);
+            glm::mat4 transformMatrix = go->m_Transform.GetTransformMatrix();
+            unsigned int numberOfVertex = go->m_Mesh.m_Vertices.size();
+            std::vector<OpenglToolKit::VertexData> vertices;
+            for (int j = 0; j < numberOfVertex; j++){
+                vertices.push_back(go->m_Mesh.m_Vertices[j]); 
+                vertices[j].Position = transformMatrix * glm::vec4(vertices[j].Position, 1.0f);
             }
+            BatchManager::Instance()->Render(vertices, go->m_Mesh.m_Triangles, go->m_Material);
             queue.pop();
         }
     }
 
-    void GameObjectManager::AddGameObject(GameObject* go){
+    void GameObjectManager::AddGameObject(GameObject* go)
+    {
         m_GameObjects.push_back(go);
     }
 
