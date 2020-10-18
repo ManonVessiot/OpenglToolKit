@@ -42,12 +42,9 @@ namespace OpenglToolKit
         glm::vec3 cameraOrientation;
         WorldManager::Instance()->GetCameraTransform(cameraPostion, cameraOrientation);
 
-        std::cout << std::endl << "Render" << std::endl;
         while (!queue.empty())
         {
             GameObject* go = queue.top();
-
-            std::cout << "dst : " << GetDistanceToCamera(go) << std::endl;
             if (go->m_Active){
                 glm::mat4 transformMatrix = go->m_Transform.GetTransformMatrix();
                 unsigned int numberOfVertex = go->m_Mesh.m_Vertices.size();

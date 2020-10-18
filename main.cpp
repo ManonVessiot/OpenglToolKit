@@ -41,6 +41,7 @@ int main(int argc, char const *argv[])
         // Loop until the user closes the window
         while (!worldManager->CheckCloseFlag())
         {
+            std::cout << std::endl << "----------Start----------" << std::endl;
             worldManager->InitFrame();
             imGuiManager->InitFrame_imgui();
 
@@ -61,6 +62,7 @@ int main(int argc, char const *argv[])
             imGuiManager->Render_imgui();
 
             worldManager->EndFrame();
+            std::cout << "-----------End-----------" << std::endl;
         }
         delete currentTest;
         if (currentTest != testMenu){

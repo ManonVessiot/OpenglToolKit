@@ -21,8 +21,7 @@ namespace OpenglToolKit
             { 
                 bool operator()( const GameObject* goA, const GameObject* goB ) const 
                 {
-                    return ( GetDistanceToCamera(goA) > GetDistanceToCamera(goB) );
-                    //return (goA->m_Mesh.m_Vertices.size() > goB->m_Mesh.m_Vertices.size() );
+                    return ( GetDistanceToCamera(goA) < GetDistanceToCamera(goB) );
                 }
             };
             std::vector<GameObject*> m_GameObjects;

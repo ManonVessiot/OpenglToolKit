@@ -15,17 +15,17 @@
 namespace tests {
     Test4_BatchManager::Test4_BatchManager()
         :m_active1(true),
-         m_Trans1{   0.5f,  0.0f,  0.0f},
+         m_Trans1{   0.5f,  0.0f,  4.0f},
          m_Rot1{     0.0f,  0.0f,  0.0f},
          m_Scale1{   0.3f,  0.3f,  0.3f},
 
          m_active2(true),
-         m_Trans2{  -0.5f,  0.0f,  0.0f},
+         m_Trans2{  -0.5f,  0.0f,  4.0f},
          m_Rot2{     0.0f,  0.0f,  0.0f},
          m_Scale2{   0.3f,  0.3f,  0.3f},
 
          m_active3(true),
-         m_Trans3{   0.0f,  0.0f,  0.0f},
+         m_Trans3{   0.0f,  0.0f,  4.0f},
          m_Rot3{     0.0f,  0.0f,  0.0f},
          m_Scale3{   0.3f,  0.3f,  0.3f}
     {
@@ -54,7 +54,8 @@ namespace tests {
 
         m_GameObject2.m_Material = OpenglToolKit::MaterialManager::Instance()->CreateMaterial("shaders/ShaderBase.shader");
         m_GameObject2.m_Material->SetMainColor(1.0f, 0.0f, 0.0f, 1.0f);        
-        m_GameObject2.m_Material->SetMainTexture(easyGL::TextureManager::Instance()->CreateTexture("textures/white.png"));
+        m_GameObject2.m_Material->SetMainTexture(easyGL::TextureManager::Instance()->CreateTexture("textures/zelda.png"));
+        m_GameObject2.m_Material->EnableTransparency(true);
 
 
         m_GameObject3.m_Mesh.Clear();
