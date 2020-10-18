@@ -2,35 +2,42 @@
 #                                   MAKEFILE                                   #
 ################################################################################
 
-OPENGL_LIBS =  -lglfw -lGLEW -lGL
-
-LIBS = $(OPENGL_LIBS)
-
 INC = -I /usr/include/
 
-VENDOR_O = ./easyGL/vendor/stb_image/stb_image.o ./vendor/imgui/imgui.o ./vendor/imgui/imgui_impl_glfw.o \
-	./vendor/imgui/imgui_impl_opengl3.o ./vendor/imgui/imgui_widgets.o ./vendor/imgui/imgui_draw.o \
-	./vendor/imgui/imgui_demo.o
+OPENGL_TOOLKIT = WorldManager.o Mesh.o Transform.o GameObject.o GameObjectManager.o Material.o MaterialManager.o \
+	Batch.o BatchManager.o MeshBuilder.o
 
-TESTS = ./tests/Test.o ./tests/Test1_GameObject.o ./tests/Test2_Material.o ./tests/Test3_ZBuffer.o \
-	./tests/Test4_BatchManager.o ./tests/Test5_MeshBuilder.o
+all: $(OPENGL_TOOLKIT)
 
-EASY_GL = ./easyGL/Renderer.o ./easyGL/VertexBuffer.o ./easyGL/IndexBuffer.o ./easyGL/VertexArray.o \
-	./easyGL/VertexBufferLayout.o ./easyGL/Shader.o ./easyGL/Texture.o ./easyGL/TextureManager.o ./easyGL/ShaderManager.o
+MeshBuilder.o: MeshBuilder.cpp MeshBuilder.h
+	$(CXX) -c MeshBuilder.cpp $(INC)
 
-OPENGL_TOOLKIT = ./OpenglToolKit/WorldManager.o ./OpenglToolKit/ImGuiManager.o ./OpenglToolKit/Mesh.o ./OpenglToolKit/Transform.o \
-	./OpenglToolKit/GameObject.o ./OpenglToolKit/GameObjectManager.o ./OpenglToolKit/Material.o ./OpenglToolKit/MaterialManager.o \
-	./OpenglToolKit/Batch.o ./OpenglToolKit/BatchManager.o ./OpenglToolKit/MeshBuilder.o
+BatchManager.o: BatchManager.cpp BatchManager.h
+	$(CXX) -c BatchManager.cpp $(INC)
 
-LOCAL = main.o 
+Batch.o: Batch.cpp Batch.h
+	$(CXX) -c Batch.cpp $(INC)
 
-all: exc
+MaterialManager.o: MaterialManager.cpp MaterialManager.h
+	$(CXX) -c MaterialManager.cpp $(INC)
 
-main.o: main.cpp
-	$(CXX) -c main.cpp $(INC)
+Material.o: Material.cpp Material.h
+	$(CXX) -c Material.cpp $(INC)
 
-exc: $(LOCAL) $(OPENGL_TOOLKIT) $(EASY_GL) $(TESTS) $(VENDOR_O)
-	$(CXX) -o exc $(LOCAL) $(OPENGL_TOOLKIT) $(EASY_GL) $(TESTS) $(VENDOR_O) $(LIBS)
+GameObjectManager.o: GameObjectManager.cpp GameObjectManager.h
+	$(CXX) -c GameObjectManager.cpp $(INC)
+
+GameObject.o: GameObject.cpp GameObject.h
+	$(CXX) -c GameObject.cpp $(INC)
+
+Transform.o: Transform.cpp Transform.h
+	$(CXX) -c Transform.cpp $(INC)
+
+Mesh.o: Mesh.cpp Mesh.h
+	$(CXX) -c Mesh.cpp $(INC)
+
+WorldManager.o: WorldManager.cpp WorldManager.h
+	$(CXX) -c WorldManager.cpp $(INC)
 
 clean :
-	rm -f *.o exc imgui.ini
+	rm -f *.o
