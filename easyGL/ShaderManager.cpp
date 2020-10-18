@@ -9,7 +9,7 @@ namespace easyGL
 {
     ShaderManager* ShaderManager::m_Instance = nullptr;
 
-    ShaderProgramSource ShaderManager::ParseShader(const std::string& filepath){
+    ShaderProgramSource ShaderManager::ParseShader(const std::string& filepath) const{
         std::ifstream stream(filepath);
 
         enum class ShaderType{

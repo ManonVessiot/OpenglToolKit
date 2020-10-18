@@ -35,8 +35,8 @@ namespace easyGL {
         
 
     private:
-        unsigned int CompileShader(unsigned int type, const std::string& source);
-        unsigned int CreateShader(const std::string& verterShader, const std::string& fragmentShader);
+        unsigned int CompileShader(unsigned int type, const std::string& source) const;
+        unsigned int CreateShader(const std::string& verterShader, const std::string& fragmentShader) const;
         int GetUniformLocation(const std::string& name);
     };
 }

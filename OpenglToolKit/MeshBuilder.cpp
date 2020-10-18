@@ -4,7 +4,8 @@ namespace OpenglToolKit
 {
     MeshBuilder* MeshBuilder::m_Instance = nullptr;
 
-    void MeshBuilder::CreateQuad(Mesh &mesh, float size){
+    void MeshBuilder::CreateQuad(Mesh &mesh, float size) const
+    {
         float halfSize = size / 2.0f;
         mesh.Clear();
         mesh.AddVertex(glm::vec3(-halfSize, -halfSize, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec4(0.0f), glm::vec2(0.0f, 0.0f), glm::vec4(1.0f));
@@ -16,7 +17,8 @@ namespace OpenglToolKit
         mesh.AddTriangle(2, 3, 0);
     }
 
-    void MeshBuilder::CreateCube(Mesh &mesh, float size){
+    void MeshBuilder::CreateCube(Mesh &mesh, float size) const
+    {
         float halfSize = size / 2.0f;
         mesh.Clear();
         mesh.AddVertex(glm::vec3(-halfSize, -halfSize,  halfSize), glm::vec3(-1.0f, -1.0f,  1.0f), glm::vec4(0.0f), glm::vec2(0.0f, 0.0f), glm::vec4(1.0f));

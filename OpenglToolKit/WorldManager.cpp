@@ -6,6 +6,8 @@
 #include "../vendor/imgui/imgui_impl_glfw.h"
 #include "../vendor/imgui/imgui_impl_opengl3.h"
 
+#include <glm/gtx/matrix_decompose.hpp>
+
 namespace OpenglToolKit
 {
     WorldManager* WorldManager::m_Instance = nullptr;
@@ -41,15 +43,15 @@ namespace OpenglToolKit
         return true;
     }
 
-    int WorldManager::CheckCloseFlag(){
+    int WorldManager::CheckCloseFlag() const{
         return glfwWindowShouldClose(m_Window);
     }
 
-    void WorldManager::InitFrame(){
+    void WorldManager::InitFrame() const{
         easyGL::Renderer::Clear();
     }
 
-    void WorldManager::EndFrame(){
+    void WorldManager::EndFrame() const{
         // Swap front and back buffers
         glfwSwapBuffers(m_Window);
 
@@ -57,12 +59,24 @@ namespace OpenglToolKit
         glfwPollEvents();
     }
 
-    void WorldManager::Terminate(){
+    void WorldManager::Terminate() const{
         glfwTerminate();
     }
 
     
-    void WorldManager::GetWindowSize(int* width, int* height){
+    void WorldManager::GetWindowSize(int* width, int* height) const{
         glfwGetWindowSize(m_Window, width, height);
+    }
+
+    void WorldManager::GetCameraTransform(glm::vec3 &position, glm::vec3 &orientation) const{
+        glm::mat4 viewInverse = glm::inverse(m_ViewMatrix);
+        glm::quat rotation;
+
+        glm::vec3 scale;
+        glm::vec3 skew;
+        glm::vec4 perspective;
+        glm::decompose(viewInverse, scale, rotation, position, skew, perspective);
+
+        orientation = rotation * glm::vec3(0.0f, 0.0f, -1.0f);        
     }
 } // namespace OpenglToolKit

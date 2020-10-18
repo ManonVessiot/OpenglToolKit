@@ -24,8 +24,8 @@ namespace OpenglToolKit
             std::vector<std::string> m_PropertyName;
             std::vector<Property> m_Property;
 
-            void SendProperty(int index);
-            void SendPropertyToShader();
+            void SendProperty(int index) const;
+            void SendPropertyToShader() const;
 
         public:
             Material():Material("shaders/ShaderBase.shader"){}
@@ -38,11 +38,11 @@ namespace OpenglToolKit
             void SetMainTextureScale(float v0, float v1);
 
             void EnableTransparency(bool enable){ m_transparencyEnable = enable; }
-            bool IsTransparent(){ return m_transparencyEnable; }
+            bool IsTransparent() const{ return m_transparencyEnable; }
 
             void AddProperty(std::string name, Property property);
 
-            void Bind();
+            void Bind() const;
             easyGL::Shader* GetShader() const;
     };    
 } // namespace OpenglToolKit

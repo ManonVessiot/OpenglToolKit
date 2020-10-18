@@ -6,15 +6,25 @@
 #include <vector>
 #include <memory>
 
-#include <vector>
+#include <queue>
 
 namespace OpenglToolKit
 {
     class GameObjectManager
     {
-        private:        
+        private:
             static GameObjectManager* m_Instance;
 
+            static float GetDistanceToCamera(const GameObject* go);
+
+            struct CompareGameObject : public std::binary_function<const GameObject*, const GameObject*, bool>
+            { 
+                bool operator()( const GameObject* goA, const GameObject* goB ) const 
+                {
+                    return ( GetDistanceToCamera(goA) > GetDistanceToCamera(goB) );
+                    //return (goA->m_Mesh.m_Vertices.size() > goB->m_Mesh.m_Vertices.size() );
+                }
+            };
             std::vector<GameObject*> m_GameObjects;
 
             GameObjectManager(){}
@@ -33,7 +43,7 @@ namespace OpenglToolKit
                 return m_Instance;
             }
             
-            void Render();
+            void Render() const;
 
             void AddGameObject(GameObject* go);
             void RemoveGameObject(GameObject* go);

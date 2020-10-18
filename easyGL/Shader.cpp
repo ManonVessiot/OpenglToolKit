@@ -19,7 +19,7 @@ namespace easyGL {
         GLCall(glDeleteProgram(m_RendererID));
     }
 
-    unsigned int Shader::CompileShader(unsigned int type, const std::string& source){
+    unsigned int Shader::CompileShader(unsigned int type, const std::string& source) const{
         unsigned int id = glCreateShader(type);
         const char* src = source.c_str();
         glShaderSource(id, 1, &src, nullptr);
@@ -41,7 +41,7 @@ namespace easyGL {
         return id;
     }
 
-    unsigned int Shader::CreateShader(const std::string& verterShader, const std::string& fragmentShader){
+    unsigned int Shader::CreateShader(const std::string& verterShader, const std::string& fragmentShader) const{
         unsigned int program = glCreateProgram();
 
         unsigned int vs = CompileShader(GL_VERTEX_SHADER, verterShader);

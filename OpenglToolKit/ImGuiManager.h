@@ -23,14 +23,14 @@ namespace OpenglToolKit
                 return m_Instance;
             }
 
-            void Init_imgui();
-            void InitFrame_imgui();
-            void Render_imgui();
-            void Destroy_imgui();
+            void Init_imgui() const;
+            void InitFrame_imgui() const;
+            void Render_imgui() const;
+            void Destroy_imgui() const;
 
-            bool StartWindow(const char* windowsName);
-            void EndWindow();
-            bool CreateButton(const char* buttonName);
+            bool StartWindow(const char* windowsName) const;
+            void EndWindow() const;
+            bool CreateButton(const char* buttonName) const;
     };
     
 } // namespace OpenglToolKit

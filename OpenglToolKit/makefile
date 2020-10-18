@@ -43,4 +43,4 @@ WorldManager.o: WorldManager.cpp WorldManager.h
 	$(CXX) -c WorldManager.cpp $(INC)
 
 clean :
-	rm -f *.o exc imgui.ini
+	rm -f *.o

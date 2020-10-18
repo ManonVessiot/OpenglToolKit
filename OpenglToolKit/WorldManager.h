@@ -34,12 +34,13 @@ namespace OpenglToolKit
             glm::mat4 m_ProjectionMatrix;
 
             bool Init(int width, int height);
-            int CheckCloseFlag();
-            void InitFrame();
-            void EndFrame();
-            void Terminate();
+            int CheckCloseFlag() const;
+            void InitFrame() const;
+            void EndFrame() const;
+            void Terminate() const;
 
-            void GetWindowSize(int* width, int* height);
+            void GetWindowSize(int* width, int* height) const;
+
+            void GetCameraTransform(glm::vec3 &position, glm::vec3 &orientation) const;
     };
-    
 } // namespace OpenglToolKit

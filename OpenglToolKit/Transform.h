@@ -17,9 +17,9 @@ namespace OpenglToolKit
             Transform();
             ~Transform();
 
-            glm::mat4 GetTranslationMatrix();
-            glm::mat4 GetRotationMatrix();
-            glm::mat4 GetScaleMatrix();
-            glm::mat4 GetTransformMatrix();
+            glm::mat4 GetTranslationMatrix() const;
+            glm::mat4 GetRotationMatrix() const;
+            glm::mat4 GetScaleMatrix() const;
+            glm::mat4 GetTransformMatrix() const;
     };    
 } // namespace OpenglToolKit

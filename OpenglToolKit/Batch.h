@@ -34,11 +34,11 @@ namespace OpenglToolKit
             ~Batch();
 
             bool isEmpty() const;
-            bool isEnoughRoom(unsigned int numVertices, unsigned int numTriangles);
+            bool isEnoughRoom(unsigned int numVertices, unsigned int numTriangles) const;
             Batch* getFullest(Batch* pBatch);
-            int getPriority() const;
+            int getPriority() const { return m_Priority; }
 
-            Material* GetMaterial(){ return m_Material; }
+            Material* GetMaterial() const { return m_Material; }
 
             void AddData(std::vector<VertexData> &vertices, std::vector<unsigned int> &triangles);
             void AddData(std::vector<VertexData> &vertices, std::vector<unsigned int> &triangles, Material* mat);

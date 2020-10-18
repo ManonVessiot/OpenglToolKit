@@ -13,20 +13,24 @@ namespace OpenglToolKit
     {
     }
 
-    glm::mat4 Transform::GetTranslationMatrix(){
+    glm::mat4 Transform::GetTranslationMatrix() const
+    {
         return glm::translate(glm::mat4(1.0f), m_Position);
     }
 
-    glm::mat4 Transform::GetRotationMatrix(){
+    glm::mat4 Transform::GetRotationMatrix() const
+    {
         glm::vec3 eulerG = glm::eulerAngles(m_Rotation);
         return glm::eulerAngleXYZ(eulerG.x, eulerG.y, eulerG.z);
     }
 
-    glm::mat4 Transform::GetScaleMatrix(){
+    glm::mat4 Transform::GetScaleMatrix() const
+    {
         return glm::scale(glm::mat4(1.0f), m_Scale);
     }
 
-    glm::mat4 Transform::GetTransformMatrix(){
+    glm::mat4 Transform::GetTransformMatrix() const
+    {
         return GetTranslationMatrix() * GetRotationMatrix() * GetScaleMatrix();
     }
 

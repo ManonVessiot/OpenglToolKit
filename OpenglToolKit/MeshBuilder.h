@@ -27,8 +27,8 @@ namespace OpenglToolKit
                 return m_Instance;
             }
 
-            void CreateQuad(Mesh &mesh, float size = 1.0f);
-            void CreateCube(Mesh &mesh, float size = 1.0f);
+            void CreateQuad(Mesh &mesh, float size = 1.0f) const;
+            void CreateCube(Mesh &mesh, float size = 1.0f) const;
             
     };
     

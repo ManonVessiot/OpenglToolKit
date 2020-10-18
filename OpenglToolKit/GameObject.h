@@ -4,6 +4,8 @@
 #include "Transform.h"
 #include "Material.h"
 
+#include <glm/glm.hpp>
+
 namespace OpenglToolKit
 {
     class GameObject
@@ -20,5 +22,6 @@ namespace OpenglToolKit
             ~GameObject();
 
             void SetActive(bool active);
+            glm::mat4 GetTransformMatrix() const;
     };    
 } // namespace OpenglToolKit

@@ -45,7 +45,7 @@ namespace OpenglToolKit
         m_Property.push_back(property);
     }
     
-    void Material::SendProperty(int index)
+    void Material::SendProperty(int index) const
     {
         switch (m_Property[index].Type)
         {
@@ -69,14 +69,14 @@ namespace OpenglToolKit
         }
     }
     
-    void Material::SendPropertyToShader()
+    void Material::SendPropertyToShader() const
     {
         for (int i = 0; i < m_PropertyName.size(); i++){
             SendProperty(i);
         }
     }
 
-    void Material::Bind()
+    void Material::Bind() const
     {
         m_Shader->Bind();
         m_Shader->SetUniformMat4f("u_MVP", WorldManager::Instance()->m_ProjectionMatrix * WorldManager::Instance()->m_ViewMatrix);

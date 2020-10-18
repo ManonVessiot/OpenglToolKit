@@ -32,17 +32,13 @@ namespace OpenglToolKit
     {
         return (m_NumUsedVertices == 0);
     }
-    bool Batch::isEnoughRoom(unsigned int numVertices, unsigned int numTriangles)
+    bool Batch::isEnoughRoom(unsigned int numVertices, unsigned int numTriangles) const
     { 
         return ( m_NumUsedVertices + numVertices <= m_MaxNumVertices && m_NumUsedTriangles + numTriangles <= m_MaxNumTriangles);
     }
 
     Batch* Batch::getFullest( Batch* pBatch ){
         return ( m_NumUsedVertices > pBatch->m_NumUsedVertices ? this : pBatch ); 
-    }
-
-    int Batch::getPriority() const{
-        return m_Priority;
     }
 
     void Batch::AddData(std::vector<VertexData> &vertices, std::vector<unsigned int> &triangles, Material* mat){
@@ -104,8 +100,6 @@ namespace OpenglToolKit
         BatchManager::nbDrawCallPerframe += 1;
         // Clear Batch
         m_NumUsedVertices = 0;
-        m_NumUsedTriangles = 0;
-        
+        m_NumUsedTriangles = 0;        
     }
-
 } // namespace OpenglToolKit

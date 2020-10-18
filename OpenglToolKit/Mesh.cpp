@@ -2,10 +2,6 @@
 
 namespace OpenglToolKit
 {
-    void Mesh::Clear(){
-        m_Vertices.clear();
-    }
-
     void Mesh::AddVertex(glm::vec3 position, glm::vec3 normal, glm::vec4 tangent, glm::vec2 uv, glm::vec4 color){
         m_Vertices.push_back(VertexData(position, normal, tangent, uv, color));
     }
@@ -14,5 +10,9 @@ namespace OpenglToolKit
         m_Triangles.push_back(a);
         m_Triangles.push_back(b);
         m_Triangles.push_back(c);
+    }
+
+    void Mesh::Clear(){
+        m_Vertices.clear();
     }
 } // namespace OpenglToolKit

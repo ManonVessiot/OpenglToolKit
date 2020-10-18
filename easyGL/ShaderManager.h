@@ -29,7 +29,7 @@ namespace easyGL
 
             std::unordered_map<std::string, Shader*> m_Shaders;
 
-            ShaderProgramSource ParseShader(const std::string& filepath);
+            ShaderProgramSource ParseShader(const std::string& filepath) const;
             
         public:
             static ShaderManager* Instance()
