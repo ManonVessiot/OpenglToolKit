@@ -35,7 +35,7 @@ namespace OpenglToolKit
     void GameObjectManager::Render() const{
         std::priority_queue<GameObject*, std::vector<GameObject*>, CompareGameObject> queue;
         for (int i = 0; i < m_GameObjects.size(); i++){
-            if (m_GameObjects[i]->m_Active)
+            if (m_GameObjects[i]->m_Active && m_GameObjects[i]->m_Mesh.m_Triangles.size() > 0)
             {
                 queue.push(m_GameObjects[i]);
             }
