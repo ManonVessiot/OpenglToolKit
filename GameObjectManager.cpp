@@ -13,8 +13,9 @@ namespace OpenglToolKit
 
     float GameObjectManager::GetDistanceToCamera(const GameObject* go){
         glm::vec3 cameraPostion;
-        glm::vec3 cameraOrientation;
+        glm::quat cameraOrientation;
         WorldManager::Instance()->GetCameraTransform(cameraPostion, cameraOrientation);
+        //glm::vec3 cameraForward = cameraOrientation * glm::vec3(0.0f, 0.0f, -1.0f);
 
         float dist = -1;
         glm::mat4 transformMatrix = go->GetTransformMatrix();
@@ -40,10 +41,6 @@ namespace OpenglToolKit
                 queue.push(m_GameObjects[i]);
             }
         }
-
-        glm::vec3 cameraPostion;
-        glm::vec3 cameraOrientation;
-        WorldManager::Instance()->GetCameraTransform(cameraPostion, cameraOrientation);
 
         while (!queue.empty())
         {

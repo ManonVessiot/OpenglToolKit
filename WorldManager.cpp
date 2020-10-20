@@ -64,15 +64,12 @@ namespace OpenglToolKit
         glfwGetWindowSize(m_Window, width, height);
     }
 
-    void WorldManager::GetCameraTransform(glm::vec3 &position, glm::vec3 &orientation) const{
+    void WorldManager::GetCameraTransform(glm::vec3 &position, glm::quat &rotation) const{
         glm::mat4 viewInverse = glm::inverse(m_ViewMatrix);
-        glm::quat rotation;
 
         glm::vec3 scale;
         glm::vec3 skew;
         glm::vec4 perspective;
-        glm::decompose(viewInverse, scale, rotation, position, skew, perspective);
-
-        orientation = rotation * glm::vec3(0.0f, 0.0f, -1.0f);        
+        glm::decompose(viewInverse, scale, rotation, position, skew, perspective);       
     }
 } // namespace OpenglToolKit

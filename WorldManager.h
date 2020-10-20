@@ -41,6 +41,6 @@ namespace OpenglToolKit
 
             void GetWindowSize(int* width, int* height) const;
 
-            void GetCameraTransform(glm::vec3 &position, glm::vec3 &orientation) const;
+            void GetCameraTransform(glm::vec3 &position, glm::quat &orientation) const;
     };
 } // namespace OpenglToolKit
